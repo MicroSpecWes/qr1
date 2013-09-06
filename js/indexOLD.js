@@ -255,85 +255,78 @@ function setimg()
 }
 
 
-var pictureSource;   // picture source
-var destinationType; // sets the format of returned value
+ cordova.exec(function(winParam) {}, function(error) {}, "service",
+                 "action", ["firstArgument", "secondArgument", 42,
+                 false]);
 
-// Wait for device API libraries to load
-//
-document.addEventListener("deviceready",onDeviceReady,false);
+ var pictureSource;   // picture source
+    var destinationType; // sets the format of returned value
 
-// device APIs are available
-//
-function onDeviceReady() {
-		pictureSource=navigator.camera.PictureSourceType;
-		destinationType=navigator.camera.DestinationType;
-}
+    // Wait for device API libraries to load
+    //
+    document.addEventListener("deviceready",onDeviceReady,false);
 
-// Called when a photo is successfully retrieved
-//
-function onPhotoDataSuccess(imageData) {
-	// Uncomment to view the base64-encoded image data
-	// console.log(imageData);
+    // device APIs are available
+    //
+    function onDeviceReady() {
+        pictureSource=navigator.camera.PictureSourceType;
+        destinationType=navigator.camera.DestinationType;
+    }
 
-	// Get image handle
-	//
-	var smallImage = document.getElementById('smallImage');
+    // Called when a photo is successfully retrieved
+    //
+    function onPhotoDataSuccess(imageData) {
+      // Uncomment to view the base64-encoded image data
+      // console.log(imageData);
 
-	// Unhide image elements
-	//
-	smallImage.style.display = 'block';
+      // Get image handle
+      //
+      var smallImage = document.getElementById('smallImage');
 
-	// Show the captured photo
-	// The inline CSS rules are used to resize the image
-	//
-	smallImage.src = "data:image/jpeg;base64," + imageData;
-}
+      // Unhide image elements
+      //
+      smallImage.style.display = 'block';
 
+      // Show the captured photo
+      // The inline CSS rules are used to resize the image
+      //
+      smallImage.src = "data:image/jpeg;base64," + imageData;
+    }
+
+
+    // A button will call this function
+    //
+    function getPhoto(source) {
+      // Retrieve image file location from specified source
+      navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 50,
+        destinationType: destinationType.FILE_URI,
+        sourceType: source });
+    }
 
 // A button will call this function
-//
-function getPhoto(source) {
-	// Retrieve image file location from specified source
-	navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 50,
-		destinationType: destinationType.FILE_URI,
-		sourceType: source });
-}
-
-// A button will call this function
-//
-function capturePhoto() {
-	// Take picture using device camera and retrieve image as base64-encoded string
-	navigator.camera.getPicture(
-		onPhotoDataSuccess,
-		onFail,
-		{ 
-			quality: 50,
-			destinationType: destinationType.DATA_URL,
-			sourceType: 1,
-			encodingType: 0
-		}
-	);
-}
-
-
-// Called if something bad happens.
-//
-function onFail(message) {
-	alert('Failed because: ' + message);
+    //
+	function capturePhoto() {
+      // Take picture using device camera and retrieve image as base64-encoded string
+      navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50,
+        destinationType: destinationType.DATA_URL });
+    }
+		
+		
+    // Called if something bad happens.
+    //
+    function onFail(message) {
+      alert('Failed because: ' + message);
 }
 
 
 
+
+};
 
 var app = {
 	// Application Constructor
 	initialize: function() {
 		this.showAlert("Application is now running", "info");
-		//this.load();
-		load();
-		setwebcam();
-		
-		$("#startCamera").click( capturePhoto() );
 	},
 	showAlert: function (message, title) {
 		if (navigator.notification) {

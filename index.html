@@ -31,7 +31,8 @@
 	
 	<!--<script type="text/javascript" charset="utf-8" src="cordova.js"></script>-->
 </head>
-<body onload="load();setwebcam();">
+<!--<body onload="load();setwebcam();">-->
+<body>
 	<div class="app">
 		<h1>PhoneGap</h1>
 		<div id="deviceready" class="blink">
@@ -39,7 +40,9 @@
 				<p class="event received">Device is Ready</p>
 		</div>
 		
-		<button onclick="capturePhoto();">Capture Photo</button> <br>
+		<li><a href="#" id="startCamera">START CAMERA Picture</a></li>
+		
+		
 		<button onclick="getPhoto(pictureSource.PHOTOLIBRARY);">From Photo Library</button><br>
 		<button onclick="getPhoto(pictureSource.SAVEDPHOTOALBUM);">From Photo Album</button><br>
 		<img style="display:none;width:60px;height:60px;" id="smallImage" src="" />
