@@ -94,6 +94,7 @@ function onFail(message) {
 }
 
 
+
 // Called at the start of the application.
 var app = {
 	// Application Constructor

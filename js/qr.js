@@ -55,10 +55,13 @@ function drop(e) {
 function handleFiles(f)
 {
 	var o=[];
-	navigator.notification.alert("handleFiles arg ==>" +f, null, "handleFiles", 'OK');
+	var i = 0;
+	alert("handleFiles arg ==>" +f, null, "handleFiles", 'OK');
+	//navigator.notification.alert("handleFiles arg ==>" +f, null, "handleFiles", 'OK');
 	for(var i =0;i<f.length;i++)
 	{
-		navigator.notification.alert("handleFiles f["+i+"] ==> " + f[i],null,"handleFilesLoop","OK");
+		//alert("handleFiles f["+i+"] ==> " + f[i],null,"handleFilesLoop","OK");
+		//navigator.notification.alert("handleFiles f["+i+"] ==> " + f[i],null,"handleFilesLoop","OK");
 			var reader = new FileReader();
 			reader.onload = (function(theFile) {
 			return function(e) {
@@ -73,6 +76,7 @@ function handleFiles(f)
 
 function initCanvas(ww,hh)
 {
+	//alert("init canvas was called");
     gCanvas = document.getElementById("qr-canvas");
     var w = ww;
     var h = hh;
@@ -159,7 +163,8 @@ function read(a)
     if(a.indexOf("http://") === 0 || a.indexOf("https://") === 0)
         html+="<a target='_blank' href='"+a+"'>"+a+"</a><br>";
     html+="<b>"+htmlEntities(a)+"</b><br><br>";
-    document.getElementById("result").innerHTML=html;
+    //document.getElementById("result").innerHTML=html;
+		$('#result').html(html);
 }	
 
 function isCanvasSupported(){
@@ -198,9 +203,14 @@ function load()
 	else
 	{
 		document.getElementById("mainbody").style.display="inline";
-		document.getElementById("mainbody").innerHTML='<p id="mp1">QR code scanner for HTML5 capable browsers</p><br>'+
+		
+		
+		//document.getElementById("mainbody").innerHTML='<p id="mp1">QR code scanner for HTML5 capable browsers</p><br>'+
+		$("#mainbody").html('<p id="mp1">QR code scanner for HTML5 capable browsers</p><br><br><p id="mp2">sorry your browser is not supported</p><br><br><p id="mp1">try <a href="http://www.mozilla.com/firefox"><img src="firefox.png"/></a> or <a href="http://chrome.google.com"><img src="chrome_logo.gif"/></a> or <a href="http://www.opera.com"><img src="Opera-logo.png"/></a></p>'); 
+		/*
         '<br><p id="mp2">sorry your browser is not supported</p><br><br>'+
         '<p id="mp1">try <a href="http://www.mozilla.com/firefox"><img src="firefox.png"/></a> or <a href="http://chrome.google.com"><img src="chrome_logo.gif"/></a> or <a href="http://www.opera.com"><img src="Opera-logo.png"/></a></p>';
+		*/
 	}
 }
 
@@ -244,10 +254,12 @@ function setwebcam()
 
 function setimg()
 {
-	document.getElementById("result").innerHTML="";
+	//document.getElementById("result").innerHTML="";
+	$("#result").html("");
     if(stype==2)
         return;
-    document.getElementById("outdiv").innerHTML = imghtml;
+    //document.getElementById("outdiv").innerHTML = imghtml;
+		$("#outdiv").html(imghtml);
     var qrfile = document.getElementById("qrfile");
     qrfile.addEventListener("dragenter", dragenter, false);  
     qrfile.addEventListener("dragover", dragover, false);  
