@@ -159,12 +159,15 @@ function htmlEntities(str) {
 
 function read(a)
 {
-    var html="<br>";
+	
+    var out="<br>";
     if(a.indexOf("http://") === 0 || a.indexOf("https://") === 0)
-        html+="<a target='_blank' href='"+a+"'>"+a+"</a><br>";
-    html+="<b>"+htmlEntities(a)+"</b><br><br>";
+        out+="<a target='_blank' href='"+a+"'>"+a+"</a><br>";
+    out+="<b>"+htmlEntities(a)+"</b><br><br>";
     //document.getElementById("result").innerHTML=html;
-		$('#result').html(html);
+		navigator.notification.alert(out, null, "read", 'OK');
+		$('#result').html(out);
+		
 }	
 
 function isCanvasSupported(){
