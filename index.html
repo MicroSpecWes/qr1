@@ -35,7 +35,7 @@
 	
 	<!--<script type="text/javascript" charset="utf-8" src="cordova.js"></script>-->
 </head>
-<!--<body onload="load();setwebcam();">-->
+
 <body>
 	<div class="app">
 		<h1>PhoneGap</h1>
@@ -52,7 +52,8 @@
 		</div>
 		
 		<img style="display:none;width:60px;height:60px;" id="smallImage" src="" />
-		
+		<button onclick="getPhoto(pictureSource.PHOTOLIBRARY);">From Photo Library</button><br>
+		<button onclick="getPhoto(pictureSource.SAVEDPHOTOALBUM);">From Photo Album</button><br>
 		<!--
 		<li><a href="#" id="startCamera">START CAMERA Picture</a></li>
 		
@@ -62,14 +63,20 @@
 		<img style="display:none;width:60px;height:60px;" id="smallImage" src="" />
 		<img style="display:none;" id="largeImage" src="" />
 		
-		<button onclick="setwebcam()">Capture</button><br>
-		<input value="camera" type="file" accept="image/*" capture="camera" onchange="handleFiles(this.files)" />
 		-->
-		<!--input type="file"onchange="handleFiles(this.files)" value="file"/-->
-		<!--
+		<input value="camera" type="file" accept="image/*" capture="camera" onchange="handleFiles(this.files)" />
+		<button onclick="setwebcam()">Capture</button><br>
+		
+		
+		<input type="file" onchange="handleFiles(this.files)" value="file" />
+		
 		<p id ="result">Result </p>
-		<div id="outdiv">
+		<div id="outdiv"></div>
+		
+		<div id="mainbody">
 		</div>
+		
+		<!--
 		<canvas id="qr-canvas" width="640" height="480" capture></canvas>
 		-->
 	</div>

@@ -59,16 +59,15 @@ function handleFiles(f)
 	
 	for(var i =0;i<f.length;i++)
 	{
-        var reader = new FileReader();
-        reader.onload = (function(theFile) {
-        return function(e) {
-            gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height);
-
-			qrcode.decode(e.target.result);
-        };
-        })(f[i]);
-        reader.readAsDataURL(f[i]);	
-    }
+		var reader = new FileReader();
+		reader.onload = (function(theFile) {
+			return function(e) {
+				gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height);
+				qrcode.decode(e.target.result);
+			};
+		})(f[i]);
+		reader.readAsDataURL(f[i]);	
+	}
 }
 
 function initCanvas(ww,hh)
