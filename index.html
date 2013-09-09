@@ -11,6 +11,49 @@
 
 	<script type="text/javascript" charset="utf-8" src="cordova-3.0.9.js"></script>
 	<script src="phonegap.js"></script>
+
+	
+
+</head>
+
+<body>
+	<div class="app"><!--class="app" -->
+		<h1>PhoneGap</h1>
+		<div id="deviceready" class="blink">
+				<p class="event listening">Connecting to Device</p>
+				<p class="event received">Device is Ready</p>
+		</div>
+		
+		<div id="camera">
+			<button class="camera-control" onclick="capturePhoto();">Capture Photo</button>
+			<div style="text-align:center;margin:20px;">
+				<img id="cameraPic" src="" style="width:auto;height:120px;"></img>
+			</div>
+		</div>
+		
+		<input value="camera" type="file" accept="image/*" capture="camera" onchange="handleFiles(this.files)">
+		
+		<button onclick="getPhoto(pictureSource.PHOTOLIBRARY);">From Photo Library</button><br>
+		<button onclick="getPhoto(pictureSource.SAVEDPHOTOALBUM);">From Photo Album</button><br>
+		<img style="display:none;width:60px;height:60px;" id="smallImage" src="" />
+		<img style="display:none;" id="largeImage" src="" />
+				
+				
+				
+				
+		<p id ="result">Result </p>
+		<div id="outdiv"></div>
+		
+		
+		<canvas id="qr-canvas" width="640" height="480" capture></canvas>
+		<div id="mainbody">
+		</div>
+		
+
+	</div>
+
+	
+	
 	
 	
 	<script type="text/javascript" src="js/qrmaster/grid.js"></script>
@@ -31,46 +74,9 @@
 	<script type="text/javascript" src="js/qrmaster/alignpat.js"></script>
 	<script type="text/javascript" src="js/qrmaster/databr.js"></script>
 	
+	<script type="text/javascript" src="js/qr.js"></script>
+	
 	<script type="text/javascript" src="js/index.js"></script>
-	
-	<!--<script type="text/javascript" charset="utf-8" src="cordova.js"></script>-->
-</head>
-
-<body>
-	<div class="app">
-		<h1>PhoneGap</h1>
-		<div id="deviceready" class="blink">
-				<p class="event listening">Connecting to Device</p>
-				<p class="event received">Device is Ready</p>
-		</div>
-		
-		<div id="camera">
-			<button class="camera-control" onclick="capturePhoto();">Capture Photo</button>
-			<div style="text-align:center;margin:20px;">
-				<img id="cameraPic" src="" style="width:auto;height:120px;"></img>
-			</div>
-		</div>
-		
-		
-		<button onclick="getPhoto(pictureSource.PHOTOLIBRARY);">From Photo Library</button><br>
-		<button onclick="getPhoto(pictureSource.SAVEDPHOTOALBUM);">From Photo Album</button><br>
-		<img style="display:none;width:60px;height:60px;" id="smallImage" src="" />
-		<img style="display:none;" id="largeImage" src="" />
-				
-		<p id ="result">Result </p>
-		<div id="outdiv"></div>
-		
-		<div id="mainbody">
-		</div>
-		
-		<!--
-		<canvas id="qr-canvas" width="640" height="480" capture></canvas>
-		-->
-	</div>
-
-	
-	
-	
 	
 
 </body>

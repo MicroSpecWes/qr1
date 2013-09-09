@@ -31,7 +31,7 @@ function onPhotoDataSuccess(imageData) {
 	// The inline CSS rules are used to resize the image
 	smallImage.src = "data:image/jpeg;base64," + imageData;
 	
-	//handleFiles(imageData); //try the img src. after
+	handleFiles(imageData); //try the img src. after
 }
 
 // Called when a photo is successfully retrieved
@@ -55,6 +55,8 @@ function onPhotoURISuccess(imageURI) {
       // Show the captured photo
       // The inline CSS rules are used to resize the image
       largeImage.src = imageURI;
+			
+			handleFiles(imageData);
     }
 
 // photo from gallery or picture sent successfully.
@@ -68,7 +70,7 @@ function getPhoto(source) {
 	// Retrieve image file location from specified source
 	navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 50,
 		destinationType: destinationType.FILE_URI,
-		sourceType: source });
+		sourceType: source }); //destinationType.FILE_URI
 }
 
 // A button will call this function
@@ -92,13 +94,12 @@ function onFail(message) {
 }
 
 
-
 // Called at the start of the application.
 var app = {
 	// Application Constructor
 	initialize: function() {
 		this.showAlert("Application is now running", "info");
-		//this.load();
+		load();
 	},
 	showAlert: function (message, title) {
 		if (navigator.notification) {
