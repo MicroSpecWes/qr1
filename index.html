@@ -6,9 +6,12 @@
 	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
 	<link rel="stylesheet" type="text/css" href="css/index.css" />
 	<title>Hello World</title>
+	
+	<script src="lib/jquery-1.8.2.min.js"></script>
+
 	<script type="text/javascript" charset="utf-8" src="cordova-3.0.9.js"></script>
 	<script src="phonegap.js"></script>
-	<script src="lib/jquery-1.8.2.min.js"></script>
+	
 	
 	<script type="text/javascript" src="js/qrmaster/grid.js"></script>
 	<script type="text/javascript" src="js/qrmaster/version.js"></script>
@@ -41,6 +44,16 @@
 				<p class="event received">Device is Ready</p>
 		</div>
 		
+		<div id="camera">
+			<button class="camera-control" onclick="capturePhoto();">Capture Photo</button>
+			<div style="text-align:center;margin:20px;">
+				<img id="cameraPic" src="" style="width:auto;height:120px;"></img>
+			</div>
+		</div>
+		
+		<img style="display:none;width:60px;height:60px;" id="smallImage" src="" />
+		
+		<!--
 		<li><a href="#" id="startCamera">START CAMERA Picture</a></li>
 		
 		
@@ -51,13 +64,14 @@
 		
 		<button onclick="setwebcam()">Capture</button><br>
 		<input value="camera" type="file" accept="image/*" capture="camera" onchange="handleFiles(this.files)" />
-
+		-->
 		<!--input type="file"onchange="handleFiles(this.files)" value="file"/-->
+		<!--
 		<p id ="result">Result </p>
 		<div id="outdiv">
 		</div>
 		<canvas id="qr-canvas" width="640" height="480" capture></canvas>
-
+		-->
 	</div>
 
 	

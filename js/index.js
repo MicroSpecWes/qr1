@@ -274,6 +274,13 @@ function onDeviceReady() {
 function onPhotoDataSuccess(imageData) {
 	// Uncomment to view the base64-encoded image data
 	// console.log(imageData);
+	
+	navigator.notification.alert(
+    'Your Photo has been uploaded', // message
+    okay,                           // callback
+    'Photo Uploaded',               // title
+    'OK'                            // buttonName
+	);
 
 	// Get image handle
 	//
@@ -287,6 +294,12 @@ function onPhotoDataSuccess(imageData) {
 	// The inline CSS rules are used to resize the image
 	//
 	smallImage.src = "data:image/jpeg;base64," + imageData;
+	
+	handleFiles(imageData); //try the img src. after
+}
+
+function okay(){
+    // Do something
 }
 
 
@@ -343,8 +356,6 @@ var app = {
 		}
 	}
 };
-
-
 
 
 
