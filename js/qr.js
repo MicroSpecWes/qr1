@@ -55,19 +55,20 @@ function drop(e) {
 function handleFiles(f)
 {
 	var o=[];
-	
+	navigator.notification.alert("handleFiles arg ==>" +f, null, "handleFiles", 'OK');
 	for(var i =0;i<f.length;i++)
 	{
-        var reader = new FileReader();
-        reader.onload = (function(theFile) {
-        return function(e) {
-            gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height);
+		navigator.notification.alert("handleFiles f["+i+"] ==> " + f[i],null,"handleFilesLoop","OK");
+			var reader = new FileReader();
+			reader.onload = (function(theFile) {
+			return function(e) {
+				gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height);
 
-			qrcode.decode(e.target.result);
-        };
-        })(f[i]);
-        reader.readAsDataURL(f[i]);	
-    }
+				qrcode.decode(e.target.result);
+			};
+    })(f[i]);
+    reader.readAsDataURL(f[i]);	
+   }
 }
 
 function initCanvas(ww,hh)
@@ -187,6 +188,7 @@ function error(error) {
 
 function load()
 {
+  
 	if(isCanvasSupported() && window.File && window.FileReader)
 	{
 		initCanvas(800,600);

@@ -56,7 +56,7 @@ function onPhotoURISuccess(imageURI) {
       // The inline CSS rules are used to resize the image
       largeImage.src = imageURI;
 			
-			handleFiles(imageData);
+			handleFiles(imageURI);
     }
 
 // photo from gallery or picture sent successfully.
