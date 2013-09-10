@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head> 
 	<meta charset="utf-8" />
 	<meta name="format-detection" content="telephone=no" />
 	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
 	<link rel="stylesheet" type="text/css" href="css/index.css" />
 	<title>Hello World</title>
+	<!--[if lt IE 9]>
+    <script src="https://code.jquery.com/jquery-1.9.0.js"></script>
+<![endif]-->
+<!--[if gte IE 9]><!-->
+   <script src="https://code.jquery.com/jquery-2.0.0b1.js"></script>
+<!--[endif]-->
 	
-	<script src="lib/jquery-1.8.2.min.js"></script>
-
 	<script type="text/javascript" charset="utf-8" src="cordova-3.0.9.js"></script>
 
 	
@@ -16,73 +20,48 @@
 </head>
 
 <body>
-	<div class="app"><!--class="app" -->
+	<div style="width:100%;">
+		<div id="header" style="margin:0 auto;"></div>
+		
+	</div>
+	<div id="app">
+		<!--form class="form-signin" method='post'-->
+			<h2 class="form-signin-heading">Please sign in</h2>
+			<input id="uname" name='username'  type="text" class="input-block-level" placeholder="Registration Number">
+			<input id="pass" name='password'  type="password" class="input-block-level" placeholder="Password">
+			<button id="sub" class="btn btn-large btn-primary" data-role="button">Sign in</button>
+		  <!--/form-->
+		  
+		 <!-- 
 		<h1>PhoneGap</h1>
 		<div id="deviceready" class="blink">
 				<p class="event listening">Connecting to Device</p>
 				<p class="event received">Device is Ready</p>
-		</div>
-		<!--
-		<div id="camera">
-			<button class="camera-control" onclick="capturePhoto();">Capture Photo</button>
-			<div style="text-align:center;margin:20px;">
-				<img id="cameraPic" src="" style="width:auto;height:120px;"></img>
-			</div>
-		</div>
-		
-		<input value="camera" type="file" accept="image/*" capture="camera" onchange="handleFiles(this.files)">
-		
-		<button onclick="getPhoto(pictureSource.PHOTOLIBRARY);">From Photo Library</button><br>
-		<button onclick="getPhoto(pictureSource.SAVEDPHOTOALBUM);">From Photo Album</button><br>
-		<img style="display:none;width:60px;height:60px;" id="smallImage" src="" />
-		<img style="display:none;" id="largeImage" src="" />
-				
-				
-				
-				
-		<p id ="result">Result </p>
-		<div id="outdiv"></div>
-		
-		
-		<canvas id="qr-canvas" width="640" height="480" capture></canvas>
-		<div id="mainbody">
-		</div>
-		-->
-		
+		</div>		
 		<p><a href="#" class="topcoat-button" id="scan">SCAN SOMETHING</a></p>
 		<p id="info"></p>
+		
+		-->
 	</div>
-
+	<div id="rt">
+	</div>
+	<input type='hidden' id="aid"/>
 	
-	
-	
-	<!--
-	<script type="text/javascript" src="js/qrmaster/grid.js"></script>
-	<script type="text/javascript" src="js/qrmaster/version.js"></script>
-	<script type="text/javascript" src="js/qrmaster/detector.js"></script>
-	<script type="text/javascript" src="js/qrmaster/formatinf.js"></script>
-	<script type="text/javascript" src="js/qrmaster/errorlevel.js"></script>
-	<script type="text/javascript" src="js/qrmaster/bitmat.js"></script>
-	<script type="text/javascript" src="js/qrmaster/datablock.js"></script>
-	<script type="text/javascript" src="js/qrmaster/bmparser.js"></script>
-	<script type="text/javascript" src="js/qrmaster/datamask.js"></script>
-	<script type="text/javascript" src="js/qrmaster/rsdecoder.js"></script>
-	<script type="text/javascript" src="js/qrmaster/gf256poly.js"></script>
-	<script type="text/javascript" src="js/qrmaster/gf256.js"></script>
-	<script type="text/javascript" src="js/qrmaster/decoder.js"></script>
-	<script type="text/javascript" src="js/qrmaster/qrcode.js"></script>
-	<script type="text/javascript" src="js/qrmaster/findpat.js"></script>
-	<script type="text/javascript" src="js/qrmaster/alignpat.js"></script>
-	<script type="text/javascript" src="js/qrmaster/databr.js"></script>
-	
-	<script type="text/javascript" src="js/qr.js"></script>
-	-->
 	<script type="text/javascript" src="phonegap.js"></script>
 	<script type="text/javascript" src="barcodescanner.js"></script>
 	<script type="text/javascript" src="js/barcode.js"></script>
-	
+
 	<script type="text/javascript">
-			app.initialize();
+			$('#sub').click(function(){
+				alert($('#uname').val()+" p is:"+$('#pass').val());
+				$('#aid').val($('#uname').val());
+				$.get('https://www.microspec.com/reg/_ltools/testbox/loginsubmit.htm',{aid:$('#uname').val(),password:$('#pass').val()},function(d){
+					$('#rt').html("");
+					$('#rt').append(d);
+				})
+			});
+			//$('#rt').html($(window).width() +" hei:"+$(window).height());
+			//$('#header').attr("style", "width:"+($(window).width()/2)+"px; margin: 0 auto;");
 	</script>
 </body>
 </html>
