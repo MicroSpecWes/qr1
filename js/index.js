@@ -15,7 +15,7 @@ function onPhotoDataSuccess(imageData) {
 	// Uncomment to view the base64-encoded image data
 	// console.log(imageData);
 	navigator.notification.alert(
-    'Your Photo has been shot', // message
+    'Your Photo has been shot', 		// message
     okay,                           // callback
     'Photo Taken Successful',       // title
     'OK'                            // buttonName
