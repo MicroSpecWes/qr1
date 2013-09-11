@@ -75,9 +75,9 @@
 			$('#sub').click(function(){
 				alert($('#uname').val()+" p is:"+$('#pass').val());
 				$('#aid').val($('#uname').val());
-				$.get('https://www.microspec.com/reg/_ltools/testbox/loginsubmit.htm',{aid:$('#uname').val(),password:$('#pass').val()},function(data){
+				$.get('https://www.microspec.com/reg/_ltools/testbox/loginsubmit.asp',{aid:$('#uname').val(),password:$('#pass').val()},function(data){
 					$('#rt').html("");
-					$('#rt').append(d);
+					$('#rt').append(data);
 				});//
 			});
 			//$('#rt').html($(window).width() +" hei:"+$(window).height());
