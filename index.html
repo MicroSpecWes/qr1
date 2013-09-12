@@ -1,90 +1,99 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<head> 
-	<meta charset="utf-8" />
-	<meta name="format-detection" content="telephone=no" />
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black">
-	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-	<link rel="stylesheet" type="text/css" href="css/index.css" />
-	<title>Hello World</title>
-
-	<link rel="stylesheet" href="https://d10ajoocuyu32n.cloudfront.net/mobile/1.3.1/jquery.mobile-1.3.1.min.css" />
-  
-  <!-- Extra Codiqa features -->
-  <link rel="stylesheet" href="css/codiqa.ext.css" />
-  
-  <!-- jQuery and jQuery Mobile -->
-	
-  <script src="https://d10ajoocuyu32n.cloudfront.net/jquery-1.9.1.min.js"></script>
-	<script src="https://d10ajoocuyu32n.cloudfront.net/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
-	
-	<!--
-	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-	 <script src="http://www.microspec.com/reg/lib/jQueryMobile/jquery.mobile-1.3.2.min.js"></script>
-	-->
-  <!-- Extra Codiqa features -->
-  <script src="https://d10ajoocuyu32n.cloudfront.net/codiqa.ext.js"></script>
-  <script type="text/javascript" charset="utf-8" src="js/cordova-3.0.9.js"></script>
-
-  <!--
-  <script src="https://code.jquery.com/jquery-2.0.0b1.js"></script>
-	
-	<script type="text/javascript" charset="utf-8" src="cordova-3.0.9.js"></script>
-	-->
-
-
-</head>
-  
-  
-  
-<body>
-<!-- Home -->
-<div data-role="page" id="page1">
-	<div data-theme="a" data-role="header" data-position="fixed">
-			<h4 id="header">
-					MicroSpec
-			</h4>
-	</div>
-	<div id="app" data-role="content">
-			<div data-role="fieldcontain">
-					<label for="uname">
-							Registration Number
-					</label>
-					<input name="uname" id="uname" placeholder="" value="" type="text">
-			</div>
-			<div data-role="fieldcontain">
-					<label for="pass">
-							Password
-					</label>
-					<input name="pass" id="pass" placeholder="" value="" type="text">
-			</div>
-	<button id="sub" class="btn btn-large btn-primary" data-role="button" data-theme="b" data-icon="arrow-r" data-iconpos="right">Sign in</button>
-			
-	</div>
-	<div id="rt">	</div>
-	</div>
-	<input type='hidden' id="aid"/>
-
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Microspec Systems Inc.</title>
+	<link rel="stylesheet" href="/reg/lib/jquerymobile/jquery.mobile-1.3.2.min.css">
+	<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<script src="/reg/lib/jquerymobile/jquery.mobile-1.3.2.min.js"></script>
 	<script type="text/javascript" src="phonegap.js"></script>
 	<script type="text/javascript" src="barcodescanner.js"></script>
 	<script type="text/javascript" src="js/barcode.js"></script>
+	<style>
+		#myResult {
+			border: 1px solid;
+			border-color: #108040;
+			padding: 10px;
+		}
+	</style>
+</head>
+<body>
+<!---->
+<div data-role="page" id="page1" data-theme="d" data-url="page1">
+<!---->
+  <div data-role="header"><h1>MicroSpec Systems Inc.</h1></div>
+<!---->
+  <div data-role="content" >
+	<input type='hidden' id="aid"/>
+        <div data-role="fieldcontain">
+            <label for="uname">
+                Registration Number
+            </label>
+            <input name="uname" id="uname" placeholder="" value="" type="text">
+        </div>
+        <div data-role="fieldcontain">
+            <label for="pass">
+                Password
+            </label>
+            <input name="pass" id="pass" placeholder="" value="" type="text">
+        </div>
+		<button id="sub" class="btn btn-large btn-primary" data-role="button" data-theme="b" data-icon="arrow-r" data-iconpos="right">Sign in</button>
+	<div id="rt" style='width:100%;text-align:center;'></div>
+	<div class='generic'></div>
+  </div>
+</div>
+<!---->
+<div data-role="page" id="page2">
+<!---->
+  <div data-role="header">
+	<a href="#left-panel" data-iconpos="notext" data-role="button" data-shadow="true" data-iconshadow="false" data-icon="grid" ></a>
+    <h1>MicroSpec Systems Inc.</h1>
+  </div>
+<!---->  
+  <div data-role="content" class="content">
+    <a href="#page1" data-role="button" data-inline="true">Logout</a>
+    <input type="button" value="Which Page is this?" class="myButton" data-inline="true"/> <br>
+	<div class='generic'></div>
+	<div id="deviceready" class="blink">
+		<p class="event listening">Connecting to Device</p>
+		<p class="event received">Device is Ready</p>
+	</div>		
+	<p><a href="#" class="topcoat-button" id="scan">SCAN SOMETHING</a></p>
+	<p id="info"></p>
+  </div>
+ <!---->  
+	<div data-role="panel" id="left-panel" data-display="push" data-position="left" data-theme="c">
+        <p>Right push panel.</p>
+        <a href="#" data-rel="close" data-role="button" data-mini="true" data-inline="true" data-icon="delete" data-iconpos="right">Close</a>
+    </div>
+</div>
 
-	<script type="text/javascript">
-			$('#sub').click(function(){
-				$("#debug_out").html("r ==> "+$('#uname').val()+" pass ==> "+$('#pass').val());
-				$('#aid').val($('#uname').val());
-				$.get('https://www.microspec.com/reg/_ltools/testbox/loginsubmit.htm',{aid:$('#uname').val(),password:$('#pass').val()},function(data){
-					if (data !== "") { $("#debug_out").html("Get Successful"); }
-					$('#rt').html("");
-					$('#rt').append(data);
-				});//
-			});
-			//$('#rt').html($(window).width() +" hei:"+$(window).height());
-			//$('#header').attr("style", "width:"+($(window).width()/2)+"px; margin: 0 auto;");
-	</script>
-	
-	<div id="debug_out"></div>
+<script>
+$( ".myButton" ).on( "click", function() {
+	var whichPageId = $.mobile.activePage.attr( "id" );
+	$( ".generic" ).html( "This is " + whichPageId );
+});
+//event handlers
+$('#sub').click(loginButtonHandler);
+$( "#page2" ).on( "swiperight", swipeHandler );
+$( "#page2" ).on( "swipeleft", swipeHandler );
+$(document).keypress(function(e) {
+    if(e.which == 13)//enter btn
+		loginButtonHandler();
+});
+function loginButtonHandler(){
+	$('#aid').val($('#uname').val());
+	$.get('https://www.microspec.com/reg/_ltools/testbox/test1.htm',{aid:$('#uname').val(),password:$('#pass').val()},function(data){
+		if(data !=""){
+			$('#rt').html("");
+			$('#rt').append(data);
+		}
+	});
+}
+function swipeHandler( event ){
+	event.type === "swiperight"  ?	$( "#left-panel" ).panel( "open" ):$( "#left-panel" ).panel( "close" );
+}
+</script>
 </body>
 </html>
