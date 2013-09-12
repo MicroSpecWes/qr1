@@ -10,17 +10,17 @@
 	<link rel="stylesheet" type="text/css" href="css/index.css" />
 	<title>Hello World</title>
 
-	<link rel="stylesheet" href="https://d10ajoocuyu32n.cloudfront.net/mobile/1.3.1/jquery.mobile-1.3.1.min.css">
+	<link rel="stylesheet" href="https://d10ajoocuyu32n.cloudfront.net/mobile/1.3.1/jquery.mobile-1.3.1.min.css" />
   
   <!-- Extra Codiqa features -->
-  <link rel="stylesheet" href="css/codiqa.ext.css">
+  <link rel="stylesheet" href="css/codiqa.ext.css" />
   
   <!-- jQuery and jQuery Mobile -->
 	
   <script src="https://d10ajoocuyu32n.cloudfront.net/jquery-1.9.1.min.js"></script>
-  <script src="https://d10ajoocuyu32n.cloudfront.net/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
-	<!--
+	<script src="https://d10ajoocuyu32n.cloudfront.net/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
 	
+	<!--
 	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	 <script src="http://www.microspec.com/reg/lib/jQueryMobile/jquery.mobile-1.3.2.min.js"></script>
 	-->
@@ -28,11 +28,11 @@
   <script src="https://d10ajoocuyu32n.cloudfront.net/codiqa.ext.js"></script>
   <script type="text/javascript" charset="utf-8" src="js/cordova-3.0.9.js"></script>
 
-  
-   <script src="https://code.jquery.com/jquery-2.0.0b1.js"></script>
-
+  <!--
+  <script src="https://code.jquery.com/jquery-2.0.0b1.js"></script>
+	
 	<script type="text/javascript" charset="utf-8" src="cordova-3.0.9.js"></script>
-
+	-->
 
 
 </head>
@@ -42,29 +42,29 @@
 <body>
 <!-- Home -->
 <div data-role="page" id="page1">
-    <div data-theme="a" data-role="header" data-position="fixed">
-        <h4 id="header">
-            MicroSpec
-        </h4>
-    </div>
-    <div data-role="content">
-        <div data-role="fieldcontain">
-            <label for="uname">
-                Registration Number
-            </label>
-            <input name="uname" id="uname" placeholder="" value="" type="text">
-        </div>
-        <div data-role="fieldcontain">
-            <label for="pass">
-                Password
-            </label>
-            <input name="pass" id="pass" placeholder="" value="" type="text">
-        </div>
-		<button id="sub" class="btn btn-large btn-primary" data-role="button" data-theme="b" data-icon="arrow-r" data-iconpos="right">Sign in</button>
-        
-    </div>
+	<div data-theme="a" data-role="header" data-position="fixed">
+			<h4 id="header">
+					MicroSpec
+			</h4>
+	</div>
+	<div id="app" data-role="content">
+			<div data-role="fieldcontain">
+					<label for="uname">
+							Registration Number
+					</label>
+					<input name="uname" id="uname" placeholder="" value="" type="text">
+			</div>
+			<div data-role="fieldcontain">
+					<label for="pass">
+							Password
+					</label>
+					<input name="pass" id="pass" placeholder="" value="" type="text">
+			</div>
+	<button id="sub" class="btn btn-large btn-primary" data-role="button" data-theme="b" data-icon="arrow-r" data-iconpos="right">Sign in</button>
+			
+	</div>
 	<div id="rt">	</div>
-</div>
+	</div>
 	<input type='hidden' id="aid"/>
 
 	<script type="text/javascript" src="phonegap.js"></script>
@@ -73,15 +73,18 @@
 
 	<script type="text/javascript">
 			$('#sub').click(function(){
-				alert($('#uname').val()+" p is:"+$('#pass').val());
+				$("#debug_out").html("r ==> "+$('#uname').val()+" pass ==> "+$('#pass').val());
 				$('#aid').val($('#uname').val());
 				$.get('https://www.microspec.com/reg/_ltools/testbox/loginsubmit.htm',{aid:$('#uname').val(),password:$('#pass').val()},function(data){
+					if (data !== "") { $("#debug_out").html("Get Successful"); }
 					$('#rt').html("");
-					$('#rt').append(d);
+					$('#rt').append(data);
 				});//
 			});
 			//$('#rt').html($(window).width() +" hei:"+$(window).height());
 			//$('#header').attr("style", "width:"+($(window).width()/2)+"px; margin: 0 auto;");
 	</script>
+	
+	<div id="debug_out"></div>
 </body>
 </html>
