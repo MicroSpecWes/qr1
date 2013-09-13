@@ -5,10 +5,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Microspec Systems Inc.</title>
   <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css">
-  
-	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+  <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
   <script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
-	
 	<script type="text/javascript" src="phonegap.js"></script>
 	<script type="text/javascript" src="barcodescanner.js"></script>
 	<script type="text/javascript" src="js/barcode.js"></script>
@@ -27,27 +25,27 @@
 
 <!-- ****** LOGIN PAGE ********* -->
 <div data-role="page" id="page1" data-theme="d" data-url="page1">
-	<div data-role="header">
+  <div data-role="header">
 		<h1>MicroSpec Systems Inc.</h1>
 	</div>
-	<div data-role="content" >
+  <div data-role="content" >
 		<input type='hidden' id="aid"/>
-		<div data-role="fieldcontain">
-			<label for="uname">
-				Registration Number
-			</label>
-			<input name="uname" id="uname" placeholder="" value="" type="text">
-		</div>
-		<div data-role="fieldcontain">
-			<label for="pass">
-				Password
-			</label>
-			<input name="pass" id="pass" placeholder="" value="" type="text">
-		</div>
-		<button id="signIn" class="btn btn-large btn-primary" data-role="button" data-theme="b" data-icon="arrow-r" data-iconpos="right">Sign in</button>
-	<div id="script_out" style='width:100%;text-align:center;'></div>
+    <div data-role="fieldcontain">
+      <label for="uname">
+        Registration Number
+      </label>
+      <input name="uname" id="uname" placeholder="" value="" type="text">
+    </div>
+    <div data-role="fieldcontain">
+      <label for="pass">
+        Password
+      </label>
+      <input name="pass" id="pass" placeholder="" value="" type="text">
+    </div>
+		<button id="sub" class="btn btn-large btn-primary" data-role="button" data-theme="b" data-icon="arrow-r" data-iconpos="right">Sign in</button>
+	<div id="rt" style='width:100%;text-align:center;'></div>
 	<div class='generic'></div>
-	</div>
+  </div>
 </div>
 <!-- ****** END OF LOGIN PAGE ********* -->
 
@@ -85,7 +83,7 @@
 		$( ".generic" ).html( "This is " + whichPageId );
 	});
 	//event handlers
-	$('#signIn').click(loginButtonHandler);
+	$('#sub').click(loginButtonHandler);
 	$( "#page2" ).on( "swiperight", swipeHandler );
 	$( "#page2" ).on( "swipeleft", swipeHandler );
 	$(document).keypress(function(e) {
@@ -99,8 +97,8 @@
 		$('#aid').val($('#uname').val());
 		$.get('https://www.microspec.com/reg/_ltools/testbox/test1.htm',{aid:$('#uname').val(),password:$('#pass').val()},function(data){
 			if(data !=""){
-				$('#script_out').html("");
-				$('#script_out').append(data);
+				$('#rt').html("");
+				$('#rt').append(data);
 			}
 		});
 	}
