@@ -21,16 +21,31 @@
 		.ui-title {
     margin: 0.6em 10% 0.8em !important;
 		}
+		body {
+			background-image: linear-gradient(bottom, rgb(158,155,158) 0%, rgb(0,0,0) 100%);
+			background-image: -o-linear-gradient(bottom, rgb(158,155,158) 0%, rgb(0,0,0) 100%);
+			background-image: -moz-linear-gradient(bottom, rgb(158,155,158) 0%, rgb(0,0,0) 100%);
+			background-image: -webkit-linear-gradient(bottom, rgb(158,155,158) 0%, rgb(0,0,0) 100%);
+			background-image: -ms-linear-gradient(bottom, rgb(158,155,158) 0%, rgb(0,0,0) 100%);
+
+			background-image: -webkit-gradient(
+				linear,
+				left bottom,
+				left top,
+				color-stop(0, rgb(158,155,158)),
+				color-stop(1, rgb(0,0,0))
+			);
+		}
 	</style>
 </head>
 <body>
 
-<!-- ****** LOGIN PAGE ********* -->
+<!-- ****** LOGIN PAGE ********* --><!--
 <div data-role="page" id="page1" data-theme="d" data-url="page1">
 	<div data-role="header">
 		<h1>MicroSpec Systems Inc.</h1>
 	</div>
-	<div data-role="content" >
+	<div data-role="content" class="pagebody">
 		<input type='hidden' id="aid"/>
 		<div data-role="fieldcontain">
 			<label for="uname">
@@ -45,10 +60,70 @@
 			<input name="pass" id="pass" placeholder="" value="" type="text">
 		</div>
 		<button id="signIn" class="btn btn-large btn-primary" data-role="button" data-theme="b" data-icon="arrow-r" data-iconpos="right">Sign in</button>
-	<div id="script_out" style='width:100%;text-align:center;'></div>
-	<div class='generic'></div>
+		<div id="script_out" style='width:100%;text-align:center;'></div>
+		<div class='generic'></div>
 	</div>
 </div>
+
+
+<!-- Home -->
+<!-- Home -->
+<div data-role="page" id="page1">
+  <div data-theme="a" data-role="header">
+    <h5>
+      Login
+    </h5>
+  </div>
+  <div data-role="content">
+    <div style="width: 288px; height: 100px; position: relative; background-color: #fbfbfb; border: 1px solid #b8b8b8;">
+      <img src="img/logos/logo.jpg" alt="image" style="position: absolute; top: 20%; left: 20%; margin-left: -16px; margin-top: -18px">
+    </div>
+    <div data-role="fieldcontain" >
+      <label for="ID">
+        ID
+      </label>
+      <input name="ID" id="ID" placeholder="" value="" type="text" class="required" />
+    </div>
+    <div data-role="fieldcontain" class="required">
+      <label for="password">
+        Password
+      </label>
+      <input name="password" id="password" placeholder="" value="" type="password" class="required" />
+    </div>
+    <a id="signIn" data-role="button" data-transition="slideup" data-theme="a"
+    data-icon="home" data-iconpos="right">
+      Login
+    </a>
+		<div id="script_out" style='width:100%;text-align:center;'></div>
+		<div class='generic'></div>
+  </div>
+  <div data-theme="a" data-role="footer" data-position="fixed">
+    <h3>
+      Powered by MicroSpec
+    </h3>
+  </div>
+</div>
+<script>
+	//
+	//Login Button Handler
+	//event handlers
+	$(document).keypress(function(e) {
+		if(e.which == 13)//enter btn
+		loginButtonHandler();
+	});
+	$('#signIn').click(loginButtonHandler);
+	// Checks for users id pass
+	function loginButtonHandler(){
+		$('#aid').val($('#uname').val());
+		$.get('https://www.microspec.com/reg/_ltools/testbox/test1.htm',{aid:$('#ID').val(),password:$('#password').val()},function(data){
+			if(data !=""){
+				$('#script_out').html("");
+				$('#script_out').append(data);
+			}
+		});
+	}
+</script>
+
 <!-- ****** END OF LOGIN PAGE ********* -->
 
 <!-- ****** CONNECTION PAGE ********* -->
@@ -58,54 +133,32 @@
     <h1>MicroSpec Systems Inc.</h1>
   </div>
   <div data-role="content" class="content">
-    <a href="#page1" data-role="button" data-inline="true">Logout</a>
-    <input type="button" value="Which Page is this?" class="myButton" data-inline="true"/> <br />
-		<div class='generic'></div>
+	
 		<div id="deviceready" class="blink">
 			<p class="event listening">Connecting to Device</p>
 			<p class="event received">Device is Ready</p>
 		</div>		
+		
 		<p><a href="#" class="topcoat-button" id="scan">SCAN SOMETHING</a></p>
 		<p id="info"></p>
   </div>
  
 	<div data-role="panel" id="left-panel" data-display="push" data-position="left" data-theme="c">
-		<p>Right push panel.</p>
+		<h2>Right push panel.</h2>
 		<p>Accounts info</p>
 		<p>Settings</p>
-		<p>logOut</p>
+		<a href="#page1" data-role="button" data-inline="true">Logout</a>
     <a href="#" data-rel="close" data-role="button" data-mini="true" data-inline="true" data-icon="delete" data-iconpos="right">Close</a>
 	</div>
 </div>
 <!-- ******* END OF CONNECTION PAGE ************* -->
 
 <script>
-	$( ".myButton" ).on( "click", function() {
-		var whichPageId = $.mobile.activePage.attr( "id" );
-		$( ".generic" ).html( "This is " + whichPageId );
-	});
-	//event handlers
-	$('#signIn').click(loginButtonHandler);
-	$( "#page2" ).on( "swiperight", swipeHandler );
-	$( "#page2" ).on( "swipeleft", swipeHandler );
-	$(document).keypress(function(e) {
-			if(e.which == 13)//enter btn
-			loginButtonHandler();
-	});
-	//
-	//Login Button Handler
-	// Checks for users id pass
-	function loginButtonHandler(){
-		$('#aid').val($('#uname').val());
-		$.get('https://www.microspec.com/reg/_ltools/testbox/test1.htm',{aid:$('#uname').val(),password:$('#pass').val()},function(data){
-			if(data !=""){
-				$('#script_out').html("");
-				$('#script_out').append(data);
-			}
-		});
-	}
 	//
 	//Swipe Handler
+
+	$( "#page2" ).on( "swiperight", swipeHandler );
+	$( "#page2" ).on( "swipeleft", swipeHandler );
 	// Logs the events 
 	function swipeHandler( event ){
 		event.type === "swiperight"  ?	$( "#left-panel" ).panel( "open" ):$( "#left-panel" ).panel( "close" );
